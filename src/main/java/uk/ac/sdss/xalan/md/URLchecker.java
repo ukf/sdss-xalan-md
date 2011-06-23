@@ -12,7 +12,13 @@ public class URLchecker {
 
 	public static String whyInvalid(String u) {
 		try {
-			new URL(u);
+			URL url = new URL(u);
+			String authority = url.getAuthority();
+			if (authority != null) {
+				if (authority.charAt(authority.length()-1) == ':') {
+					return "libxml2: port present but empty";
+				}
+			}
     		return null;
 		} catch (MalformedURLException e) {
 			return "Malformed URL: " + e.getMessage();
