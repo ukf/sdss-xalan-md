@@ -60,5 +60,16 @@ public class URLcheckerTest extends TestCase {
 	public void testBareDomain() {
 		badURL("www.example.org");
 	}
+	
+	public void testEmptyUrl() {
+	    badURL("");
+	}
 
+	public void testNullUrl() {
+	    badURL(null);
+	}
+	
+	public void testEmptyAuthority() {
+	    badURL("http:///foo/");
+	}
 }

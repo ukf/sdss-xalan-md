@@ -29,6 +29,12 @@ public class URLchecker {
 	public static String whyInvalid(String u) {
 		try {
 			URL url = new URL(u);
+			
+			String host = url.getHost();
+			if (host.length() == 0) {
+			    return "host name not present";
+			}
+			
 			String authority = url.getAuthority();
 			if (authority != null) {
 				if (authority.charAt(authority.length()-1) == ':') {
@@ -43,7 +49,7 @@ public class URLchecker {
 	
     public static boolean invalidURL(String u) {
     	String err = whyInvalid(u);
-    	return (err != null);
+    	return err != null;
     }
 
 }
