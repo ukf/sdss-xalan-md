@@ -27,11 +27,26 @@ import java.util.regex.Pattern;
 public class Mail {
 
 	/**
-	 * Pattern for valid e-mail addresses.  Note that the UK federation
-	 * metadata convention includes an explicit "mailto:" scheme.
+	 * Pattern for valid e-mail addresses.
+	 * 
+	 * This is a simplified version of the address forms permitted by RFC2822.
+	 * 
+	 * addr-spec      = local-part "@" domain
+	 * local-part     = dot-atom
+	 * dot-atom       = dot-atom-text
+	 * dot-atom-text  = 1*atext *("." 1*atext)
+	 * atext          = ALPHA / DIGIT /
+	 *                  "&" / "'" /
+	 *                  "-" /
+	 *                  "_"
+	 *                  
+	 * Quite a few legal options are currently missing here.
+	 * 
+	 * Note that the UK federation metadata convention includes an
+	 * explicit "mailto:" scheme.
 	 */
 	private static Pattern eMailPattern = Pattern.compile(
-        "^mailto:[0-9a-z\\.\\-_&]+\\@([0-9a-z\\-_]+\\.)+[a-z]+$",
+        "^mailto:[0-9a-z&'\\-_]+(\\.[0-9a-z&'\\-_]+)*\\@([0-9a-z\\-_]+\\.)+[a-z]+$",
         Pattern.CASE_INSENSITIVE
     );
 
