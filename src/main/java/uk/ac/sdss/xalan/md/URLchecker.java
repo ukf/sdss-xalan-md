@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011 University of Edinburgh.
+ * Copyright (C) 2013 University of Edinburgh.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,30 +26,30 @@ import java.net.URL;
  */
 public class URLchecker {
 
-	public static String whyInvalid(String u) {
-		try {
-			URL url = new URL(u);
-			
-			String host = url.getHost();
-			if (host.length() == 0) {
-			    return "host name not present";
-			}
-			
-			String authority = url.getAuthority();
-			if (authority != null) {
-				if (authority.charAt(authority.length()-1) == ':') {
-					return "libxml2: port present but empty";
-				}
-			}
-    		return null;
-		} catch (MalformedURLException e) {
-			return "Malformed URL: " + e.getMessage();
-		}		
-	}
-	
+    public static String whyInvalid(String u) {
+        try {
+            URL url = new URL(u);
+
+            String host = url.getHost();
+            if (host.length() == 0) {
+                return "host name not present";
+            }
+
+            String authority = url.getAuthority();
+            if (authority != null) {
+                if (authority.charAt(authority.length() - 1) == ':') {
+                    return "libxml2: port present but empty";
+                }
+            }
+            return null;
+        } catch (MalformedURLException e) {
+            return "Malformed URL: " + e.getMessage();
+        }
+    }
+
     public static boolean invalidURL(String u) {
-    	String err = whyInvalid(u);
-    	return err != null;
+        String err = whyInvalid(u);
+        return err != null;
     }
 
 }
