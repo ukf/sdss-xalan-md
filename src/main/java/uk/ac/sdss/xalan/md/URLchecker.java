@@ -24,8 +24,17 @@ import java.net.URL;
  * 
  * Author: Ian A. Young, ian@iay.org.uk
  */
-public class URLchecker {
+public final class URLchecker {
 
+    /** Constructor. */
+    private URLchecker() {}
+    
+    /**
+     * Indicates why the provided string is not a valid URL.
+     * 
+     * @param u supposed URL to validate
+     * @return reason the URL is not valid, or <code>null</code> if it is valid
+     */
     public static String whyInvalid(String u) {
         try {
             URL url = new URL(u);
@@ -47,6 +56,12 @@ public class URLchecker {
         }
     }
 
+    /**
+     * Indicates whether the provided string is not a valid URL.
+     * 
+     * @param u supposed URL to validate
+     * @return <code>true</code> if the string is not a valid URL.
+     */
     public static boolean invalidURL(String u) {
         String err = whyInvalid(u);
         return err != null;

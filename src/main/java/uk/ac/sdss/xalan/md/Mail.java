@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
  * 
  * Author: Ian A. Young, ian@iay.org.uk
  */
-public class Mail {
+public final class Mail {
 
     /**
      * Pattern for valid e-mail addresses.
@@ -50,6 +50,15 @@ public class Mail {
         Pattern.CASE_INSENSITIVE
     );
 
+    /** Constructor. */
+    private Mail() {}
+    
+    /**
+     * Indicates whether an e-mail address looks dodgy, i.e., has the wrong pattern.
+     * 
+     * @param eMail e-mail address to check
+     * @return <code>true</code> if the e-mail address does not match the pattern
+     */
     public static boolean dodgyAddress(String eMail) {
         Matcher m = eMailPattern.matcher(eMail);
         return !m.matches();

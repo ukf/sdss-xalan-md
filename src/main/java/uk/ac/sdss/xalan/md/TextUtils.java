@@ -21,8 +21,11 @@ package uk.ac.sdss.xalan.md;
  * 
  * Author: Ian A. Young, ian@iay.org.uk
  */
-public class TextUtils {
+public final class TextUtils {
 
+    /** Constructor. */
+    private TextUtils() {}
+    
     /**
      * The argument string is the base-64 encoding of something. Normalise this
      * so that it doesn't have white space in peculiar places, then break it into
@@ -31,13 +34,14 @@ public class TextUtils {
      * @param s base-64 encoded string
      * @return normalised string with line breaks
      */
-    public static String wrapBase64(String s) {
+    public static String wrapBase64(final String s) {
+
         /* remove all white space */
-        s = s.replaceAll("\\s*", "");
+        String clean = s.replaceAll("\\s*", "");
 
         StringBuilder result = new StringBuilder();
         StringBuilder line = new StringBuilder();
-        for (char c : s.toCharArray()) {
+        for (char c : clean.toCharArray()) {
             if (line.length() == 64) {
                 if (result.length() != 0) {
                     result.append('\n');
