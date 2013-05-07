@@ -37,8 +37,14 @@ public final class URLchecker {
      */
     public static String whyInvalid(String u) {
         try {
+            // Delegate most checking to the Java URL class constructor.
             URL url = new URL(u);
 
+            // The Java URL constructor incorrectly accepts un-encoded spaces.
+            if (u.indexOf(' ') >= 0) {
+                return "URL value must not contain an unencoded space character";
+            }
+            
             String host = url.getHost();
             if (host.length() == 0) {
                 return "host name not present";
