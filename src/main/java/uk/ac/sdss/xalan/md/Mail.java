@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011 University of Edinburgh.
+ * Copyright (C) 2013 University of Edinburgh.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,32 +24,41 @@ import java.util.regex.Pattern;
  * 
  * Author: Ian A. Young, ian@iay.org.uk
  */
-public class Mail {
+public final class Mail {
 
-	/**
-	 * Pattern for valid e-mail addresses.
-	 * 
-	 * This is a simplified version of the address forms permitted by RFC2822.
-	 * 
-	 * addr-spec      = local-part "@" domain
-	 * local-part     = dot-atom
-	 * dot-atom       = dot-atom-text
-	 * dot-atom-text  = 1*atext *("." 1*atext)
-	 * atext          = ALPHA / DIGIT /
-	 *                  "&" / "'" /
-	 *                  "-" /
-	 *                  "_"
-	 *                  
-	 * Quite a few legal options are currently missing here.
-	 * 
-	 * Note that the UK federation metadata convention includes an
-	 * explicit "mailto:" scheme.
-	 */
-	private static Pattern eMailPattern = Pattern.compile(
+    /**
+     * Pattern for valid e-mail addresses.
+     * 
+     * This is a simplified version of the address forms permitted by RFC2822.
+     * 
+     * addr-spec      = local-part "@" domain
+     * local-part     = dot-atom
+     * dot-atom       = dot-atom-text
+     * dot-atom-text  = 1*atext *("." 1*atext)
+     * atext          = ALPHA / DIGIT /
+     *                  "&" / "'" /
+     *                  "-" /
+     *                  "_"
+     *                  
+     * Quite a few legal options are currently missing here.
+     * 
+     * Note that the UK federation metadata convention includes an
+     * explicit "mailto:" scheme.
+     */
+    private static Pattern eMailPattern = Pattern.compile(
         "^mailto:[0-9a-z&'\\-_]+(\\.[0-9a-z&'\\-_]+)*\\@([0-9a-z\\-_]+\\.)+[a-z]+$",
         Pattern.CASE_INSENSITIVE
     );
 
+    /** Constructor. */
+    private Mail() {}
+    
+    /**
+     * Indicates whether an e-mail address looks dodgy, i.e., has the wrong pattern.
+     * 
+     * @param eMail e-mail address to check
+     * @return <code>true</code> if the e-mail address does not match the pattern
+     */
     public static boolean dodgyAddress(String eMail) {
         Matcher m = eMailPattern.matcher(eMail);
         return !m.matches();

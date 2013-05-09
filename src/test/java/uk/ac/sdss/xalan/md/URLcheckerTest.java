@@ -72,4 +72,8 @@ public class URLcheckerTest extends TestCase {
 	public void testEmptyAuthority() {
 	    badURL("http:///foo/");
 	}
+	
+	public void testFillInHostName() {
+	    badURL("http://*** FILL IN ***/");
+	}
 }
