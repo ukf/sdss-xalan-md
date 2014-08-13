@@ -37,16 +37,30 @@ public final class Mail {
      * dot-atom-text  = 1*atext *("." 1*atext)
      * atext          = ALPHA / DIGIT /
      *                  "&" / "'" /
+     *                  "+" /
      *                  "-" /
      *                  "_"
      *                  
-     * Quite a few legal options are currently missing here.
+     * Quite a few legal options are currently missing here. The full RFC 2822
+     * grammar for atext is:
+     * 
+     * atext           = ALPHA / DIGIT / ; Any character except controls,
+     *                   "!" / "#" /     ;  SP, and specials.
+     *                   "$" / "%" /     ;  Used for atoms
+     *                   "&" / "'" /
+     *                   "*" / "+" /
+     *                   "-" / "/" /
+     *                   "=" / "?" /
+     *                   "^" / "_" /
+     *                   "`" / "{" /
+     *                   "|" / "}" /
+     *                   "~"
      * 
      * Note that the UK federation metadata convention includes an
      * explicit "mailto:" scheme.
      */
     private static Pattern eMailPattern = Pattern.compile(
-        "^mailto:[0-9a-z&'\\-_]+(\\.[0-9a-z&'\\-_]+)*\\@([0-9a-z\\-_]+\\.)+[a-z]+$",
+        "^mailto:[a-z0-9&'+\\-_]+(\\.[a-z0-9&+'\\-_]+)*\\@([0-9a-z\\-_]+\\.)+[a-z]+$",
         Pattern.CASE_INSENSITIVE
     );
 

@@ -23,6 +23,7 @@ public class MailTest extends TestCase {
     public void testDodgyAddress() {
         assertFalse(Mail.dodgyAddress("mailto:ian@iay.org.uk"));
         assertFalse(Mail.dodgyAddress("mailto:First.O'Last@example.com"));
+        assertFalse(Mail.dodgyAddress("mailto:address+sub@example.org"));
 
         assertTrue(Mail.dodgyAddress(""));							// empty element
         assertTrue(Mail.dodgyAddress("ian@iay.org.uk"));			// no "mailto:"
