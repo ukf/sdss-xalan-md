@@ -20,7 +20,7 @@
         <checkstyle-plugin.version>3.1.0</checkstyle-plugin.version>
         <checkstyle.configLocation>checkstyle.xml</checkstyle.configLocation>
 
-        <maven.central.url>http://repo1.maven.org/maven2</maven.central.url>
+        <maven.central.url>https://repo1.maven.org/maven2</maven.central.url>
     </properties>
 
     <developers>
